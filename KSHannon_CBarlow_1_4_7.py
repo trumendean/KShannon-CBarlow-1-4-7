@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import PIL
 import matplotlib.pyplot as plt # single use of plt is commented out
 import os.path  
@@ -51,3 +52,5 @@ def get_images(directory=None):
         
         
           
+=======
+>>>>>>> origin/master
