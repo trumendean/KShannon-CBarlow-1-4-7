@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+
 import PIL
 import matplotlib.pyplot as plt # single use of plt is commented out
 import os.path  
 import PIL.ImageDraw            
-import Image
+from PIL import Image
 def add_logo(directory=None):
     if directory == None:
         directory = os.getcwd() # Use working directory if unspecified
@@ -21,6 +21,9 @@ def add_logo(directory=None):
         filename, filetype = file_list[n].split('.')
         #im.paste('powercat.png',(0,0))
         
+        old_image = image.open(len(image_list))
+        im = old_image
+
         new_image = im.paste('powercat.png',(0,0))
         new_image_filename = os.path.join(new_directory, filename + '.png')
         new_image.save(new_image_filename)
@@ -51,6 +54,4 @@ def get_images(directory=None):
     return image_list, file_list 
         
         
-          
-=======
->>>>>>> origin/master
+
