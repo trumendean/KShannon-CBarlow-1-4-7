@@ -4,29 +4,29 @@ import matplotlib.pyplot as plt # single use of plt is commented out
 import os.path  
 import PIL.ImageDraw            
 from PIL import Image
-def add_logo(directory=None):
-    if directory == None:
-        directory = os.getcwd() # Use working directory if unspecified
-        
-    # Create a new directory 'modified'
-    new_directory = os.path.join(directory, 'Logo')
-    try:
-        os.mkdir(new_directory)
-    except OSError:
-        pass
-    
-   
-    image_list, file_list = get_images(directory) 
-    for n in range(len(image_list)):
-        filename, filetype = file_list[n].split('.')
-        #im.paste('powercat.png',(0,0))
-        
-        old_image = image.open(len(image_list))
-        im = old_image
+def resize_canvas(old_image_path="314.jpg", new_image_path="save.jpg",
+                  canvas_width=500, canvas_height=500):
+    """Resize the canvas of old_image_path and store the new image in
+       new_image_path. Center the image on the new canvas.
+    """
+    im = Image.open(old_image_path)
+    old_width, old_height = im.size
 
-        new_image = im.paste('powercat.png',(0,0))
-        new_image_filename = os.path.join(new_directory, filename + '.png')
-        new_image.save(new_image_filename)
+    # Center the image
+    x1 = int(math.floor((canvas_width - old_width) / 2))
+    y1 = int(math.floor((canvas_height - old_height) / 2))
+
+    mode = im.mode
+    if len(mode) == 1:  # L, 1
+        new_background = (255)
+    if len(mode) == 3:  # RGB
+        new_background = (255, 255, 255)
+    if len(mode) == 4:  # RGBA, CMYK
+        new_background = (255, 255, 255, 255)
+
+    newImage = Image.new(mode, (canvas_width, canvas_height), new_background)
+    newImage.paste(im, (x1, y1, x1 + old_width, y1 + old_height))
+    newImage.save(new_image_path)
 def get_images(directory=None):
     """ Returns PIL.Image objects for all the images in directory.
     
