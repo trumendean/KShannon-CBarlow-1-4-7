@@ -1,4 +1,4 @@
-
+import Image
 import PIL
 import matplotlib.pyplot as plt # single use of plt is commented out
 import os.path  
@@ -21,10 +21,13 @@ def add_logo(directory=None):
         filename, filetype = file_list[n].split('.')
         #im.paste('powercat.png',(0,0))
         
-        old_image = image.open(len(image_list))
-        im = old_image
+        
+        background = Image.open("teen.jpg")
+        foreground = Image.open("powercat.png")
+        
+        #test = background.paste(foreground, (0, 0), foreground) 
 
-        new_image = im.paste('powercat.png',(0,0))
+        new_image = background.paste(foreground, (0, 0), foreground)
         new_image_filename = os.path.join(new_directory, filename + '.png')
         new_image.save(new_image_filename)
 def get_images(directory=None):
