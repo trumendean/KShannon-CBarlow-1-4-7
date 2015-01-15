@@ -43,14 +43,21 @@ def add_logo(directory=None):
     student_file = os.path.join(directory, 'awkward.jpg')
     student_img = PIL.Image.open(student_file)
     
+    width, height = student_img.size
+
+    border_file = os.path.join(directory, 'geometric.jpg')
+    border_img = PIL.Image.open(border_file)
+    border_big = border_img.resize((350, 400))
+    
     logo_file = os.path.join(directory, 'powercat.png')
     logo_img = PIL.Image.open(logo_file)
     logo_small = logo_img.resize((50, 40)) 
 
     student_img.paste(logo_small, (0, 0), mask=logo_small)
+    border_big.paste(student_img, (75,75))
 
     #student_img_filename = os.path.join(new_directory, filename + '.png')
-    student_img.save('this is a thing now.png')
+    border_big.save('this is a thing now.png')
 
 def get_images(directory=None):
     """ Returns PIL.Image objects for all the images in directory.
