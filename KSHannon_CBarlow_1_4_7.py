@@ -2,7 +2,8 @@ import Image
 import PIL
 import matplotlib.pyplot as plt # single use of plt is commented out
 import os.path  
-import PIL.ImageDraw            
+import PIL.ImageDraw
+import math            
 '''def resize_canvas(old_image_path="314.jpg", new_image_path="save.jpg",
                   canvas_width=500, canvas_height=500):
     """Resize the canvas of old_image_path and store the new image in
@@ -26,38 +27,43 @@ import PIL.ImageDraw
     newImage = Image.new(mode, (canvas_width, canvas_height), new_background)
     newImage.paste(im, (x1, y1, x1 + old_width, y1 + old_height))
     newImage.save(new_image_path)''' #just showed up randomly oneday
-def add_logo(directory=None):
+def add_logo(picture_file):
 
-    if directory == None:
-        directory = os.getcwd() # Use working directory if unspecified
+    directory = os.getcwd() # Use working directory if unspecified
         
     # Create a new directory 'modified'
-    new_directory = os.path.join(directory, 'Logo')
+    '''new_directory = os.path.join(directory, 'Logo')
     try:
         os.mkdir(new_directory)
     except OSError:
-        pass
+        pass'''
     
     #image_list, file_list = get_images(directory)
 
-    student_file = os.path.join(directory, 'awkward.jpg')
-    student_img = PIL.Image.open(student_file)
+    student_file = os.path.join(picture_file)
+    student_img = student_file
     
     width, height = student_img.size
 
     border_file = os.path.join(directory, 'geometric.jpg')
     border_img = PIL.Image.open(border_file)
-    border_big = border_img.resize((350, 400))
+    border_big = border_img.resize((width + 40, height + 40))
     
     logo_file = os.path.join(directory, 'powercat.png')
     logo_img = PIL.Image.open(logo_file)
     logo_small = logo_img.resize((50, 40)) 
 
+    border_width, border_height = border_big.size
+
+        # Center the image
+    x1 = int(math.floor((border_width - width) / 2))
+    y1 = int(math.floor((border_height - height) / 2))
+
     student_img.paste(logo_small, (0, 0), mask=logo_small)
-    border_big.paste(student_img, (75,75))
+    result = border_big.paste(student_img, (x1,y1))
 
     #student_img_filename = os.path.join(new_directory, filename + '.png')
-    border_big.save('this is a thing now.png')
+    return result
 
 def get_images(directory=None):
     """ Returns PIL.Image objects for all the images in directory.
@@ -85,26 +91,26 @@ def get_images(directory=None):
             pass # do nothing with errors tying to open non-images
     return image_list, file_list 
         
-'''def add_logo_all_images(directory=None):
+def add_logo_all_images(directory=None):
+    
     if directory == None:
         directory = os.getcwd() # Use working directory if unspecified
-        
-    # Create a new directory 'modified'
+
+        # Create a new directory 'Logo'
     new_directory = os.path.join(directory, 'Logo')
     try:
         os.mkdir(new_directory)
     except OSError:
         pass
-    
-    image_list, file_list = get_images(directory)
 
+    image_list, file_list = get_images(directory) 
+
+    #go through the images and save modified versions
     for n in range(len(image_list)):
-
+        # Parse the filename
         filename, filetype = file_list[n].split('.')
-
-        student_img = add_logo(image_list[n])
-   
-        #student_img.save('HALP5.png')
+        
+        new_image = add_logo(image_list[n])
+        #save the altered image, suing PNG to retain transparency
         new_image_filename = os.path.join(new_directory, filename + '.png')
-        student_img.save(new_image_filename)
-'''
+        new_image.save(new_image_filename)
