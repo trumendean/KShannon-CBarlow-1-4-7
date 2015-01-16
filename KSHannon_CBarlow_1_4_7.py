@@ -27,21 +27,22 @@ import math
     newImage = Image.new(mode, (canvas_width, canvas_height), new_background)
     newImage.paste(im, (x1, y1, x1 + old_width, y1 + old_height))
     newImage.save(new_image_path)''' #just showed up randomly oneday
-def add_logo(picture_file):
-
-    directory = os.getcwd() # Use working directory if unspecified
+def add_logo(directory=None):
+     
+    if directory == None:
+        directory = os.getcwd() # Use working directory if unspecified
         
     # Create a new directory 'modified'
-    '''new_directory = os.path.join(directory, 'Logo')
+    new_directory = os.path.join(directory, 'Logo')
     try:
         os.mkdir(new_directory)
     except OSError:
-        pass'''
+        pass
     
     #image_list, file_list = get_images(directory)
 
-    student_file = os.path.join(picture_file)
-    student_img = student_file
+    student_file = os.path.join(directory, 'awkward.jpg')
+    student_img = PIL.Image.open(student_file)
     
     width, height = student_img.size
 
@@ -60,10 +61,9 @@ def add_logo(picture_file):
     y1 = int(math.floor((border_height - height) / 2))
 
     student_img.paste(logo_small, (0, 0), mask=logo_small)
-    result = border_big.paste(student_img, (x1,y1))
+    border_big.paste(student_img, (x1,y1))
 
-    #student_img_filename = os.path.join(new_directory, filename + '.png')
-    return result
+    border_big.save('Dingo ate my baby.png')
 
 def get_images(directory=None):
     """ Returns PIL.Image objects for all the images in directory.
@@ -91,7 +91,7 @@ def get_images(directory=None):
             pass # do nothing with errors tying to open non-images
     return image_list, file_list 
         
-def add_logo_all_images(directory=None):
+'''def add_logo_all_images(directory=None):
     
     if directory == None:
         directory = os.getcwd() # Use working directory if unspecified
@@ -112,5 +112,4 @@ def add_logo_all_images(directory=None):
         
         new_image = add_logo(image_list[n])
         #save the altered image, suing PNG to retain transparency
-        new_image_filename = os.path.join(new_directory, filename + '.png')
-        new_image.save(new_image_filename)
+        new_image.save('lll')'''
