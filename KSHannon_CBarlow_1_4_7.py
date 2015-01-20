@@ -28,10 +28,16 @@ import math
     newImage.paste(im, (x1, y1, x1 + old_width, y1 + old_height))
     newImage.save(new_image_path)''' #just showed up randomly oneday
 <<<<<<< HEAD
+<<<<<<< HEAD
 def add_logo(directory=None):
 
     if directory == None:
         directory = os.getcwd() # Use working directory if unspecified
+=======
+def add_logo(picture_file):
+
+    directory = os.getcwd() # Use working directory if unspecified
+>>>>>>> parent of 4f755e5... back to old
 =======
 def add_logo(picture_file):
 
@@ -72,7 +78,11 @@ def add_logo(picture_file):
 
     #student_img_filename = os.path.join(new_directory, filename + '.png')
 <<<<<<< HEAD
+<<<<<<< HEAD
     border_big.save('this is a thing now.png')
+=======
+    return result
+>>>>>>> parent of 4f755e5... back to old
 =======
     return result
 >>>>>>> parent of 4f755e5... back to old
@@ -104,8 +114,11 @@ def get_images(directory=None):
     return image_list, file_list 
         
 <<<<<<< HEAD
+<<<<<<< HEAD
 '''def add_logo_all_images(directory=None):
 =======
+=======
+>>>>>>> parent of 4f755e5... back to old
 def add_logo_all_images(directory=None):
     
 >>>>>>> parent of 4f755e5... back to old
@@ -137,5 +150,9 @@ def add_logo_all_images(directory=None):
         new_image = add_logo(image_list[n])
         #save the altered image, suing PNG to retain transparency
         new_image_filename = os.path.join(new_directory, filename + '.png')
+<<<<<<< HEAD
+        new_image.save(new_image_filename)
+>>>>>>> parent of 4f755e5... back to old
+=======
         new_image.save(new_image_filename)
 >>>>>>> parent of 4f755e5... back to old
