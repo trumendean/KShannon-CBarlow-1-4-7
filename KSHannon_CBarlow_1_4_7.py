@@ -2,7 +2,8 @@ import Image
 import PIL
 import matplotlib.pyplot as plt # single use of plt is commented out
 import os.path  
-import PIL.ImageDraw            
+import PIL.ImageDraw    
+import math        
 '''def resize_canvas(old_image_path="314.jpg", new_image_path="save.jpg",
                   canvas_width=500, canvas_height=500):
     """Resize the canvas of old_image_path and store the new image in
@@ -47,14 +48,21 @@ def add_logo(directory=None):
 
     border_file = os.path.join(directory, 'geometric.jpg')
     border_img = PIL.Image.open(border_file)
-    border_big = border_img.resize((350, 400))
+    border_big = border_img.resize((width + 30, height + 30))
     
+    border_height, border_width = border_big.size
+
+        # Center the image
+    x1 = int(math.floor((border_width - width) / 2))
+    y1 = int(math.floor((border_height - height) / 2))
+
+
     logo_file = os.path.join(directory, 'powercat.png')
     logo_img = PIL.Image.open(logo_file)
     logo_small = logo_img.resize((50, 40)) 
 
     student_img.paste(logo_small, (0, 0), mask=logo_small)
-    border_big.paste(student_img, (75,75))
+    border_big.paste(student_img, (x1,y1))
 
     #student_img_filename = os.path.join(new_directory, filename + '.png')
     border_big.save('this is a thing now.png')
