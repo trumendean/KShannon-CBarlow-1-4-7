@@ -40,7 +40,7 @@ def add_logo(directory=None):
     
     #image_list, file_list = get_images(directory)
 
-    student_file = os.path.join(directory, 'teen.jpg')
+    student_file = os.path.join(directory, 'landscape.jpg')
     student_img = PIL.Image.open(student_file)
     
     width, height = student_img.size
