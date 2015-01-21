@@ -27,10 +27,12 @@ import math
     newImage = Image.new(mode, (canvas_width, canvas_height), new_background)
     newImage.paste(im, (x1, y1, x1 + old_width, y1 + old_height))
     newImage.save(new_image_path)''' #just showed up randomly oneday
-def add_logo(directory=None):
+def add_logo(file_name,save_name):
+    '''file name is the name of they file you want to work with in the same directory. Save name
+    is the name of the new file you want to save as.'''
 
-    if directory == None:
-        directory = os.getcwd() # Use working directory if unspecified        
+
+    directory = os.getcwd() # Use working directory if unspecified        
     # Create a new directory 'modified'
     new_directory = os.path.join(directory, 'Logo')
     try:
@@ -40,7 +42,7 @@ def add_logo(directory=None):
     
     #image_list, file_list = get_images(directory)
 
-    student_file = os.path.join(directory, 'landscape.jpg')
+    student_file = os.path.join(directory, file_name)
     student_img = PIL.Image.open(student_file)
     
     width, height = student_img.size
@@ -64,7 +66,7 @@ def add_logo(directory=None):
     border_big.paste(student_img, (x1,y1))
 
     #student_img_filename = os.path.join(new_directory, filename + '.png')
-    border_big.save('this is a thing now.png')
+    border_big.save(save_name)
 def get_images(directory=None):
     """ Returns PIL.Image objects for all the images in directory.
     
