@@ -28,13 +28,13 @@ import math
     newImage.paste(im, (x1, y1, x1 + old_width, y1 + old_height))
     newImage.save(new_image_path)''' #just showed up randomly oneday
 def add_logo(file_name,save_name,logo,border):
+    
     '''file name is the name of they file you want to work with in the same directory. Save name
     is the name of the new file you want to save as. Logo is so you can use your own logo is same directory as
     as long as it is a PNG file(NOTE: logo will be 50 pxs by 40 pxs).Border is so you can set what image is used as the border.'''
 
-
     directory = os.getcwd() # Use working directory if unspecified        
-    # Create a new directory 'modified'
+    # Create a new directory 'logo'
     new_directory = os.path.join(directory, 'Logo')
     try:
         os.mkdir(new_directory)
@@ -44,15 +44,15 @@ def add_logo(file_name,save_name,logo,border):
     #image_list, file_list = get_images(directory)
 
     student_file = os.path.join(directory, file_name)
-    student_img = PIL.Image.open(student_file)
+    student_img = PIL.Image.open(student_file)#opens student file
     
     width, height = student_img.size
 
     border_file = os.path.join(directory, border)
-    border_img = PIL.Image.open(border_file)
-    border_big = border_img.resize((width + 40, height + 40))
+    border_img = PIL.Image.open(border_file)#opens border image
+    border_big = border_img.resize((width + 40, height + 40))#sets border based on image
     
-    border_width, border_height = border_big.size
+    border_width, border_height = border_big.size#gets the size of border
 
         # Center the image
     x1 = int(math.floor((border_width - width) / 2))
@@ -60,14 +60,14 @@ def add_logo(file_name,save_name,logo,border):
 
 
     logo_file = os.path.join(directory, logo)
-    logo_img = PIL.Image.open(logo_file)
+    logo_img = PIL.Image.open(logo_file)#opens logo file
     logo_small = logo_img.resize((50, 40)) 
 
-    student_img.paste(logo_small, (0, 0), mask=logo_small)
-    border_big.paste(student_img, (x1,y1))
+    student_img.paste(logo_small, (0, 0), mask=logo_small)#puts logo on image
+    border_big.paste(student_img, (x1,y1))#puts image and logo on border image
 
     #student_img_filename = os.path.join(new_directory, filename + '.png')
-    border_big.save(save_name)
+    border_big.save(save_name)#saves using user defined save name
 def get_images(directory=None):
     """ Returns PIL.Image objects for all the images in directory.
     
