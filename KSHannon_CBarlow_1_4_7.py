@@ -27,9 +27,10 @@ import math
     newImage = Image.new(mode, (canvas_width, canvas_height), new_background)
     newImage.paste(im, (x1, y1, x1 + old_width, y1 + old_height))
     newImage.save(new_image_path)''' #just showed up randomly oneday
-def add_logo(file_name,save_name):
+def add_logo(file_name,save_name,logo,border):
     '''file name is the name of they file you want to work with in the same directory. Save name
-    is the name of the new file you want to save as.'''
+    is the name of the new file you want to save as. Logo is so you can use your own logo is same directory.
+    Border is so you can set what image is used as the border.'''
 
 
     directory = os.getcwd() # Use working directory if unspecified        
@@ -47,7 +48,7 @@ def add_logo(file_name,save_name):
     
     width, height = student_img.size
 
-    border_file = os.path.join(directory, 'geometric.jpg')
+    border_file = os.path.join(directory, border)
     border_img = PIL.Image.open(border_file)
     border_big = border_img.resize((width + 40, height + 40))
     
@@ -58,7 +59,7 @@ def add_logo(file_name,save_name):
     y1 = int(math.floor((border_height - height) / 2))
 
 
-    logo_file = os.path.join(directory, 'powercat.png')
+    logo_file = os.path.join(directory, logo)
     logo_img = PIL.Image.open(logo_file)
     logo_small = logo_img.resize((50, 40)) 
 
