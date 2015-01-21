@@ -29,8 +29,8 @@ import math
     newImage.save(new_image_path)''' #just showed up randomly oneday
 def add_logo(file_name,save_name,logo,border):
     '''file name is the name of they file you want to work with in the same directory. Save name
-    is the name of the new file you want to save as. Logo is so you can use your own logo is same directory.
-    Border is so you can set what image is used as the border.'''
+    is the name of the new file you want to save as. Logo is so you can use your own logo is same directory as
+    as long as it is a PNG file(NOTE: logo will be 50 pxs by 40 pxs).Border is so you can set what image is used as the border.'''
 
 
     directory = os.getcwd() # Use working directory if unspecified        
