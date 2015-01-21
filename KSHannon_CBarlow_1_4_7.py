@@ -43,12 +43,12 @@ def add_logo(file_name,save_name,logo,border):
     
     #image_list, file_list = get_images(directory)
 
-    student_file = os.path.join(directory, file_name)
+    student_file = os.path.join(directory, file_name)#sets student image
     student_img = PIL.Image.open(student_file)#opens student file
     
     width, height = student_img.size
 
-    border_file = os.path.join(directory, border)
+    border_file = os.path.join(directory, border)#sets border image
     border_img = PIL.Image.open(border_file)#opens border image
     border_big = border_img.resize((width + 40, height + 40))#sets border based on image
     
@@ -59,9 +59,9 @@ def add_logo(file_name,save_name,logo,border):
     y1 = int(math.floor((border_height - height) / 2))
 
 
-    logo_file = os.path.join(directory, logo)
+    logo_file = os.path.join(directory, logo)#sets logo image
     logo_img = PIL.Image.open(logo_file)#opens logo file
-    logo_small = logo_img.resize((50, 40)) 
+    logo_small = logo_img.resize((50, 40)) #shrinks logo image
 
     student_img.paste(logo_small, (0, 0), mask=logo_small)#puts logo on image
     border_big.paste(student_img, (x1,y1))#puts image and logo on border image
