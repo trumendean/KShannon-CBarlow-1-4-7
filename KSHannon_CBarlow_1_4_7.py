@@ -27,7 +27,7 @@ import math
     newImage = Image.new(mode, (canvas_width, canvas_height), new_background)
     newImage.paste(im, (x1, y1, x1 + old_width, y1 + old_height))
     newImage.save(new_image_path)''' #just showed up randomly oneday
-def add_logo(file_name,save_name,logo,border):
+def add_logo(file_name,logo,border,save_name):
     
     '''file name is the name of they file you want to work with in the same directory. Save name
     is the name of the new file you want to save as. Logo is so you can use your own logo is same directory as
